@@ -2,6 +2,7 @@ import Navbar from './components/navbar/navbar.component';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import ToasterProvider from './providers/toastProvider';
+import Categories from './components/categories/categories.component';
 
 export const metadata = {
   title: 'Airbnb clone',
@@ -18,6 +19,7 @@ export default function RootLayout({
       <body>
         <ToasterProvider />
         <Navbar />
+
         <div className="pb-20 pt-28">{children}</div>
       </body>
     </html>
