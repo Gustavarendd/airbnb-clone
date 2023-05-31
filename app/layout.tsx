@@ -2,7 +2,10 @@ import Navbar from './components/navbar/navbar.component';
 import './globals.css';
 import { Inter } from 'next/font/google';
 import ToasterProvider from './providers/toastProvider';
-import Categories from './components/categories/categories.component';
+
+import LoginModal from './components/modals/loginModal.component';
+import SignUpModal from './components/modals/signUpModal.component';
+import SearchModal from './components/modals/searchModal.component';
 
 export const metadata = {
   title: 'Airbnb clone',
@@ -19,8 +22,10 @@ export default function RootLayout({
       <body>
         <ToasterProvider />
         <Navbar />
-
-        <div className="pb-20 pt-28">{children}</div>
+        <LoginModal />
+        <SignUpModal />
+        <SearchModal />
+        <div className="pb-24 pt-24">{children}</div>
       </body>
     </html>
   );

@@ -20,6 +20,9 @@ import {
   TbCactus,
   TbCoffee,
 } from 'react-icons/tb';
+
+import { usePathname, useSearchParams } from 'next/navigation';
+
 import CategoryCard from './categoryCard.component';
 
 export const categories = [
@@ -101,25 +104,36 @@ export const categories = [
 ];
 
 const Categories = () => {
+  const params = useSearchParams();
+  const categoryParam = params?.get('category');
+  const pathname = usePathname();
+
+  const isMainPage = pathname === '/';
+
+  if (!isMainPage) return null;
+
   return (
-    <div className="max-w-full flex items-center px-10">
-      <div className="relative flex items-center w-[80vw]">
-        <div className="flex gap-8 overflow-x-scroll no-scrollbar">
+    <div className="flex items-center justify-between px-10 border-b-[1px]">
+      <div className="relative flex flex-row items-center">
+        <div className="w-[85vw] flex flex-row flex-nowrap gap-8 overflow-x-hidden no-scrollbar px-[67px]">
           {categories.map(category => (
             <CategoryCard
               key={category.label}
               icon={category.icon}
               label={category.label}
+              selected={
+                categoryParam === category.label.toLowerCase().replace('&', '')
+              }
             />
           ))}
         </div>
         <div className="absolute flex items-center bg-gray-100 fade-left h-full w-[67px]">
-          <div className="border-[1px] z-10 bg-white rounded-full p-1">
+          <div className="border-[1px] cursor-pointer bg-white rounded-full p-1">
             <IoIosArrowBack />
           </div>
         </div>
         <div className="absolute right-0 flex items-center justify-end fade-right h-full w-[67px] ">
-          <div className="flex border-[1px] z-10 bg-white rounded-full p-1 ">
+          <div className="flex border-[1px] cursor-pointer bg-white rounded-full p-1 ">
             <IoIosArrowForward />
           </div>
         </div>
