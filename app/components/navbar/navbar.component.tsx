@@ -1,17 +1,22 @@
 'use client';
+import { SafeUser } from '@/app/types';
 import Categories from '../categories/categories.component';
 import Logo from './logo.component';
 import Menu from './menu.component';
 import SearchBar from './searchBar.component';
 
-const Navbar = () => {
+interface NavbarProps {
+  currentUser?: SafeUser | null;
+}
+
+const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
     <div className="w-full fixed bg-white shadow-sm z-10">
       <div className="shadow-sm">
-        <div className="flex flex-row items-center justify-between py-4 px-10">
+        <div className="grid grid-cols-3 items-center min-w-full py-4 px-10">
           <Logo />
           <SearchBar />
-          <Menu />
+          <Menu currentUser={currentUser} />
         </div>
       </div>
       <div className="mt-1">

@@ -48,3 +48,12 @@ body {
     rgb(255, 255, 255) 40px
   );
 }
+
+.rdrMonth {
+  width: 100% !important;
+}
+
+.rdrCalendarWrapper {
+  width: 100% !important;
+  font-size: 12px !important;
+}

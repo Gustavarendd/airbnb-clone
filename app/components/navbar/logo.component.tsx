@@ -12,7 +12,7 @@ const Logo = () => {
       alt="logo"
       width={100}
       height={100}
-      className="cursor-pointer"
+      className="cursor-pointer justify-self-start"
     />
   );
 };

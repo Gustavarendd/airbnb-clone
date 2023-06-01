@@ -6,22 +6,24 @@ import ToasterProvider from './providers/toastProvider';
 import LoginModal from './components/modals/loginModal.component';
 import SignUpModal from './components/modals/signUpModal.component';
 import SearchModal from './components/modals/searchModal.component';
+import getCurrentUser from './actions/getCurrentUser';
 
 export const metadata = {
   title: 'Airbnb clone',
   description: 'Created by Gustav Rasmussen',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body>
         <ToasterProvider />
-        <Navbar />
+        <Navbar currentUser={currentUser} />
         <LoginModal />
         <SignUpModal />
         <SearchModal />

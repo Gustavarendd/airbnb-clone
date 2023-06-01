@@ -1,5 +1,7 @@
 'use client';
 
+import { FieldErrors, FieldValues, UseFormRegister } from 'react-hook-form';
+
 interface InputProps {
   id: string;
   label: string;
@@ -9,6 +11,8 @@ interface InputProps {
   roundedBottom?: boolean;
   searchInput?: boolean;
   placeholder?: string;
+  register: UseFormRegister<FieldValues>;
+  errors: FieldErrors;
 }
 
 const Input: React.FC<InputProps> = ({
@@ -20,6 +24,8 @@ const Input: React.FC<InputProps> = ({
   roundedBottom,
   searchInput,
   placeholder,
+  register,
+  errors,
 }) => {
   if (searchInput) {
     return (
@@ -36,7 +42,7 @@ const Input: React.FC<InputProps> = ({
           <input
             id={id}
             type={type}
-            required={required}
+            {...register(id, { required })}
             placeholder={placeholder}
             className={`w-full outline-none bg-transparent text-xs`}
           />
@@ -49,7 +55,7 @@ const Input: React.FC<InputProps> = ({
         <input
           id={id}
           type={type}
-          required={required}
+          {...register(id, { required })}
           placeholder=" "
           className={`peer w-full border-[1px] border-gray-300 pt-4 p-2 outline-black ${
             roundedTop ? 'rounded-t-lg border-b-none' : ''

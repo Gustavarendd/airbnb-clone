@@ -1,8 +1,9 @@
 'use client';
 
 import { IconType } from 'react-icons';
-import { useSearchParams, useRouter, usePathname } from 'next/navigation';
+import { useSearchParams, useRouter } from 'next/navigation';
 import { useCallback } from 'react';
+import queryString from 'query-string';
 
 interface CategoryCardProps {
   icon: IconType;
@@ -18,24 +19,34 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   const router = useRouter();
   const params = useSearchParams();
 
-  let currentQuery = usePathname();
-
   const handleClick = useCallback(() => {
+    let currentQuery = {};
+
+    if (params) {
+      currentQuery = queryString.parse(params.toString());
+    }
+
     const updatedQuery: any = {
-      currentQuery,
-      category: label,
+      ...currentQuery,
+      category: label.replace('&', '').toLowerCase(),
     };
 
-    if (params?.get('category') === label) {
+    if (params?.get('category') === label.replace('&', '').toLowerCase()) {
       delete updatedQuery.category;
     }
 
-    const url = `?category=${updatedQuery.category}`
-      .toLowerCase()
-      .replace('&', '');
+    const url = queryString.stringifyUrl(
+      {
+        url: '/',
+        query: updatedQuery,
+      },
+      {
+        skipNull: true,
+      },
+    );
 
     router.push(url);
-  }, [router, currentQuery, label, params]);
+  }, [label, params, router]);
 
   return (
     <div

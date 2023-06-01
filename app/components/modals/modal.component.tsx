@@ -47,8 +47,6 @@ const Modal: React.FC<ModalProps> = ({
   }, [disabled, onClose]);
 
   const handleBackdropClick = (e: any) => {
-    console.log(e.type);
-
     if (e.target.id === 'backdrop') {
       handleClose();
     }
@@ -77,15 +75,16 @@ const Modal: React.FC<ModalProps> = ({
           handleBackdropClick(e);
         }}
       >
-        <div className="relative w-full h-fit">
+        <div className="w-full">
           <div
-            className={`translate duration-100 ${
+            className={`translate duration-300 flex flex-col items-center ${
               showModal ? 'translate-y-0' : '-translate-y-full'
             } ${showModal ? 'opacity-100' : 'opacity-0'}`}
           >
-            <div className="flex items-center translate p-4 h-auto border-0 shadow-lg relative flex-col w-full bg-white outline-none focus:outline-none">
+            <div className="flex items-center p-4 h-auto border-0 shadow-lg relative flex-col w-full bg-white outline-none focus:outline-none">
               {body}
             </div>
+            <div className="flex flex-row w-[90%] max-w-[700px]">{footer}</div>
           </div>
         </div>
       </div>
