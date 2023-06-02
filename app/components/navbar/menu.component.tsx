@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 
 import { AiOutlineMenu } from 'react-icons/ai';
 import { IoPersonCircle } from 'react-icons/io5';
@@ -9,8 +9,10 @@ import MenuItem from './menuItem.component';
 
 import useLoginModal from '@/app/hooks/useLoginModal';
 import useSignUpModal from '@/app/hooks/useSignUpModal';
+import useAirbnbYourHomeModal from '@/app/hooks/useAirbnbYourHomeModal';
 import { SafeUser } from '@/app/types';
 import { signOut } from 'next-auth/react';
+import Image from 'next/image';
 
 interface MenuProps {
   currentUser?: SafeUser | null;
@@ -21,11 +23,24 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
 
   const loginModal = useLoginModal();
   const signUpModal = useSignUpModal();
+  const airbnbYourHomeModal = useAirbnbYourHomeModal();
+
+  const airbnbYourHome = useCallback(() => {
+    if (!currentUser) {
+      return loginModal.onOpen();
+    }
+    return airbnbYourHomeModal.onOpen();
+  }, []);
 
   return (
     <div className="relative justify-self-end">
       <div className="flex gap-4 items-center">
-        <div className="text-xs font-semibold">Airbnb your home</div>
+        <div
+          onClick={airbnbYourHome}
+          className="text-xs font-semibold cursor-pointer"
+        >
+          Airbnb your home
+        </div>
         <div>
           <HiOutlineGlobeAlt size={16} />
         </div>
@@ -35,7 +50,17 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
         >
           <AiOutlineMenu size={14} />
           <div className="text-gray-500">
-            <IoPersonCircle size={26} />
+            {currentUser?.image ? (
+              <Image
+                src={currentUser.image}
+                alt="Profile picture"
+                height={26}
+                width={26}
+                className="rounded-full"
+              />
+            ) : (
+              <IoPersonCircle size={26} />
+            )}
           </div>
         </div>
       </div>

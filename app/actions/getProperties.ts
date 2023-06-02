@@ -1,6 +1,6 @@
 import prisma from '@/app/libs/prismadb';
 
-export interface IListingsParams {
+export interface IPropertiesParams {
   userId?: string;
   guestCount?: number;
   roomCount?: number;
@@ -11,7 +11,7 @@ export interface IListingsParams {
   category?: string;
 }
 
-export default async function getListings(params: IListingsParams) {
+export default async function getProperties(params: IPropertiesParams) {
   try {
     const {
       userId,
@@ -66,18 +66,18 @@ export default async function getListings(params: IListingsParams) {
       };
     }
 
-    const listings = await prisma.listing.findMany({
+    const properties = await prisma.property.findMany({
       where: query,
       orderBy: {
         createdAt: 'desc',
       },
     });
 
-    const SafeListings = listings.map(listing => ({
-      ...listing,
-      createdAt: listing.createdAt.toISOString(),
+    const SafeProperties = properties.map(property => ({
+      ...property,
+      createdAt: property.createdAt.toISOString(),
     }));
-    return SafeListings;
+    return SafeProperties;
   } catch (error: any) {
     throw new Error(error);
   }

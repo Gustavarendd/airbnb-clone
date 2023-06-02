@@ -14,6 +14,7 @@ import CountrySelect, {
 } from '../inputs/countrySelect.component';
 import { useRouter, useSearchParams } from 'next/navigation';
 import Counter from '../inputs/counter.component';
+import LocationMap from '../map/map.component';
 
 enum STEPS {
   LOCATION = 0,
@@ -177,6 +178,7 @@ const SearchModal = () => {
           value={location}
           onChange={value => setLocation(value as CountrySelectValue)}
         />
+        <LocationMap location={location?.latlng || [51, 10]} />
         <Button
           onClick={onSubmit}
           label="Continue"

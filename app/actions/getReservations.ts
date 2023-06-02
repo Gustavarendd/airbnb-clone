@@ -1,19 +1,19 @@
 import prisma from '@/app/libs/prismadb';
 
 interface IParams {
-  listingId?: string;
+  propertyId?: string;
   userId?: string;
   authorId?: string;
 }
 
 export default async function getReservations(params: IParams) {
   try {
-    const { listingId, userId, authorId } = params;
+    const { propertyId, userId, authorId } = params;
 
     const query: any = {};
 
-    if (listingId) {
-      query.listingId = listingId;
+    if (propertyId) {
+      query.propertyId = propertyId;
     }
 
     if (userId) {
@@ -21,13 +21,13 @@ export default async function getReservations(params: IParams) {
     }
 
     if (authorId) {
-      query.listing = { userId: authorId };
+      query.property = { userId: authorId };
     }
 
     const reservations = await prisma.reservation.findMany({
       where: query,
       include: {
-        listing: true,
+        property: true,
       },
       orderBy: {
         createdAt: 'desc',
@@ -39,9 +39,9 @@ export default async function getReservations(params: IParams) {
       createdAt: reservation.createdAt.toISOString(),
       startDate: reservation.startDate.toISOString(),
       endDate: reservation.endDate.toISOString(),
-      listing: {
-        ...reservation.listing,
-        createdAt: reservation.listing.createdAt.toISOString(),
+      property: {
+        ...reservation.property,
+        createdAt: reservation.property.createdAt.toISOString(),
       },
     }));
     return safeReservations;

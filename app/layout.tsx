@@ -7,6 +7,7 @@ import LoginModal from './components/modals/loginModal.component';
 import SignUpModal from './components/modals/signUpModal.component';
 import SearchModal from './components/modals/searchModal.component';
 import getCurrentUser from './actions/getCurrentUser';
+import AirbnbYourHomeModal from './components/modals/airbnbYourHomeModal.component';
 
 export const metadata = {
   title: 'Airbnb clone',
@@ -27,6 +28,7 @@ export default async function RootLayout({
         <LoginModal />
         <SignUpModal />
         <SearchModal />
+        <AirbnbYourHomeModal />
         <div className="pb-24 pt-24">{children}</div>
       </body>
     </html>

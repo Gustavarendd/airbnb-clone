@@ -26,9 +26,10 @@ const SignUpModal = () => {
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
-      name: '',
+      firstName: '',
+      lastName: '',
       email: '',
-      // dateOfBirth: '',
+      dateOfBirth: '',
       password: '',
     },
   });
@@ -41,6 +42,7 @@ const SignUpModal = () => {
       .then(() => {
         toast.success('Success!');
         signUpModal.onClose();
+        loginModal.onOpen();
       })
       .catch(error => {
         toast.error('Something went wrong!');

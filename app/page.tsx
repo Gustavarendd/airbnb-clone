@@ -1,9 +1,40 @@
-import EmptyState from './components/emptyState/emptyState.component';
+import EmptyState from './components/emptyState.component';
 
-export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between ">
-      <EmptyState showReset />
-    </main>
-  );
+import getProperties, { IPropertiesParams } from './actions/getProperties';
+import getCurrentUser from './actions/getCurrentUser';
+import ClientOnly from './components/clientOnly.component';
+import PropertyCard from './components/properties/propertyCard.component';
+
+interface HomeProps {
+  searchParams: IPropertiesParams;
 }
+const Home = async ({ searchParams }: HomeProps) => {
+  const properties = await getProperties(searchParams);
+  const currentUser = await getCurrentUser();
+
+  if (properties.length === 0) {
+    return (
+      <ClientOnly>
+        <EmptyState showReset />
+      </ClientOnly>
+    );
+  }
+
+  return (
+    <ClientOnly>
+      <main className="pt-24 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-6 gap-8">
+        {properties.map(property => {
+          return (
+            <PropertyCard
+              currentUser={currentUser}
+              key={property.id}
+              data={property}
+            />
+          );
+        })}
+      </main>
+    </ClientOnly>
+  );
+};
+
+export default Home;

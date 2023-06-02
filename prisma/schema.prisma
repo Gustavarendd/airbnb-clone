@@ -12,6 +12,7 @@ datasource db {
 
 model User {
   id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String?
   firstName String?
   lastName String?
   email String? @unique
@@ -24,7 +25,7 @@ model User {
   favoriteIds String[] @db.ObjectId
 
   accounts Account[]
-  listings Listing[]
+  properties Property[]
   reservations Reservation[]
 }
 
@@ -47,7 +48,7 @@ model Account {
   @@unique([provider, providerAccountId])
 }
 
-model Listing {
+model Property {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   title String
   description String
@@ -68,13 +69,13 @@ model Listing {
 model Reservation {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
-  listingId String @db.ObjectId
+  propertyId String @db.ObjectId
   startDate DateTime
   endDate DateTime
   totalPrice Int
   createdAt DateTime @default(now())
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  property Property @relation(fields: [propertyId], references: [id], onDelete: Cascade)
 }
 
