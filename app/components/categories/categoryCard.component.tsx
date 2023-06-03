@@ -51,7 +51,7 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
   return (
     <div
       onClick={handleClick}
-      className={`flex flex-col items-center gap-2 min-w-fit hover:text-neutral-800 hover:border-b-neutral-400 border-b-2 transition cursor-pointer py-2  ${
+      className={`flex flex-col items-center gap-2 hover:text-neutral-800 min-w-fit hover:border-b-neutral-400 border-b-2 transition cursor-pointer py-2  ${
         selected ? 'border-b-neutral-800' : 'border-transparent'
       } 
     ${selected ? 'text-neutral-800' : 'text-neutral-400'}`}

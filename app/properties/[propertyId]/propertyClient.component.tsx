@@ -17,6 +17,7 @@ import { SafeProperty, SafeReservation, SafeUser } from '@/app/types';
 import PropertyReservation from '@/app/components/properties/PropertyReservation.component';
 
 import { Range } from 'react-date-range';
+import Container from '@/app/components/container.component';
 
 const initialDateRange = {
   startDate: new Date(),
@@ -32,7 +33,7 @@ interface PropertyClientProps {
   currentUser?: SafeUser | null;
 }
 
-const ListingClient: React.FC<PropertyClientProps> = ({
+const PropertyClient: React.FC<PropertyClientProps> = ({
   property,
   reservations = [],
   currentUser,
@@ -105,7 +106,7 @@ const ListingClient: React.FC<PropertyClientProps> = ({
   }, [property.category]);
 
   return (
-    <div>
+    <Container>
       <div className="max-w-screen-lg mx-auto">
         <div className="flex flex-col gap-6">
           <PropertyHead
@@ -146,8 +147,8 @@ const ListingClient: React.FC<PropertyClientProps> = ({
           </div>
         </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
-export default ListingClient;
+export default PropertyClient;

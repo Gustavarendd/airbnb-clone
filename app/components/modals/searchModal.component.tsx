@@ -173,12 +173,14 @@ const SearchModal = () => {
       id="backdrop"
       className="flex w-full"
     >
-      <div className="rounded-2xl border-[1px] drop-shadow-lg p-8 bg-white">
+      <div className="w-[80%] flex flex-col gap-4 rounded-2xl border-[1px] drop-shadow-lg p-8 bg-white">
         <CountrySelect
           value={location}
           onChange={value => setLocation(value as CountrySelectValue)}
         />
-        <LocationMap location={location?.latlng || [51, 10]} />
+        <LocationMap
+          location={location?.latlng || [56.70954028190986, 11.555548396911327]}
+        />
         <Button
           onClick={onSubmit}
           label="Continue"

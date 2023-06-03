@@ -160,7 +160,11 @@ const AirbnbYourHomeModal = () => {
           value={location}
           onChange={value => setCustomValue('location', value)}
         />
-        <LocationMap location={mapLocation?.latlng || [51, 10]} />
+        <LocationMap
+          location={
+            mapLocation?.latlng || [56.70954028190986, 11.555548396911327]
+          }
+        />
       </div>
     );
   }

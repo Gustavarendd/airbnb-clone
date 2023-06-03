@@ -6,7 +6,7 @@ import Image from 'next/image';
 import HeartButton from '../button/heartButton.component';
 import Title from '../title.component';
 
-interface ListingHeadProps {
+interface PropertyHeadProps {
   title: string;
   imageSrc: string;
   locationValue: string;
@@ -14,7 +14,7 @@ interface ListingHeadProps {
   currentUser?: SafeUser | null;
 }
 
-const PropertyHead: React.FC<ListingHeadProps> = ({
+const PropertyHead: React.FC<PropertyHeadProps> = ({
   title,
   imageSrc,
   locationValue,

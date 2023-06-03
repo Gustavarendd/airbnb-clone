@@ -9,7 +9,7 @@ const SearchBar = () => {
   return (
     <div
       onClick={searchModal.onOpen}
-      className="flex items-center justify-around w-fit gap-3 border-[1px] shadow-md rounded-full p-1 pl-4 font-semibold text-xs justify-self-center"
+      className="flex items-center col-span-3 lg:col-span-1 justify-around w-fit gap-3 border-[1px] shadow-md rounded-full p-1 pl-4 font-semibold text-xs justify-self-center"
     >
       <div>Anywhere</div>
       <div className="border-x-[1px] px-3">Any week</div>

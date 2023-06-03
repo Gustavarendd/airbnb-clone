@@ -69,7 +69,7 @@ const PropertyCard: React.FC<PropertyCardProps> = ({
         <div className="aspect-square w-full relative overflow-hidden rounded-xl">
           <Image
             fill
-            alt="Listing"
+            alt="Property"
             src={data.imageSrc}
             className="object-full h-full w-full group-hover:scale-110 transition"
           />

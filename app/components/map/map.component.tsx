@@ -13,10 +13,11 @@ interface MapProps {
 }
 
 const LocationMap: React.FC<MapProps> = ({ location }) => {
-  const libraries = useMemo(() => ['places'], []);
-
   const mapCenter = useMemo(
-    () => ({ lat: location[0] || 51, lng: location[1] || 10 }),
+    () => ({
+      lat: location[0],
+      lng: location[1],
+    }),
     [location],
   );
 

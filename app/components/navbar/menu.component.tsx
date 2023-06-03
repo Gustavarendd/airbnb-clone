@@ -1,6 +1,7 @@
 'use client';
 
 import { useCallback, useState } from 'react';
+import { useRouter } from 'next/navigation';
 
 import { AiOutlineMenu } from 'react-icons/ai';
 import { IoPersonCircle } from 'react-icons/io5';
@@ -20,6 +21,7 @@ interface MenuProps {
 
 const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
 
   const loginModal = useLoginModal();
   const signUpModal = useSignUpModal();
@@ -37,7 +39,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
       <div className="flex gap-4 items-center">
         <div
           onClick={airbnbYourHome}
-          className="text-xs font-semibold cursor-pointer"
+          className="text-xs font-semibold cursor-pointer hidden lg:flex"
         >
           Airbnb your home
         </div>
@@ -69,15 +71,24 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           {currentUser ? (
             <>
               <MenuItem
-                label="Reservations"
+                label="Reservations of your home"
                 onClick={() => {
                   setIsOpen(false);
+                  router.push('/reservations');
                 }}
               />
               <MenuItem
                 label="Favorites"
                 onClick={() => {
                   setIsOpen(false);
+                  router.push('/favorites');
+                }}
+              />
+              <MenuItem
+                label="Trips"
+                onClick={() => {
+                  setIsOpen(false);
+                  router.push('/trips');
                 }}
               />
             </>
@@ -102,7 +113,10 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           <hr className="my-2" />
           <MenuItem
             label="Airbnb your home"
-            onClick={() => {}}
+            onClick={() => {
+              airbnbYourHome();
+              setIsOpen(false);
+            }}
           />
           <MenuItem
             label="Help"
