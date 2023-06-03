@@ -41,7 +41,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           onClick={airbnbYourHome}
           className="text-xs font-semibold cursor-pointer hidden lg:flex"
         >
-          Airbnb your home
+          Airbnb your home!
         </div>
         <div>
           <HiOutlineGlobeAlt size={16} />
