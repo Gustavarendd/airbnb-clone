@@ -32,7 +32,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
       return loginModal.onOpen();
     }
     return airbnbYourHomeModal.onOpen();
-  }, []);
+  }, [currentUser, airbnbYourHomeModal, loginModal]);
 
   return (
     <div className="relative justify-self-end">
@@ -41,7 +41,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           onClick={airbnbYourHome}
           className="text-xs font-semibold cursor-pointer hidden lg:flex"
         >
-          Airbnb your home!
+          Airbnb your home
         </div>
         <div>
           <HiOutlineGlobeAlt size={16} />

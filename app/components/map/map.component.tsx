@@ -1,7 +1,8 @@
 'use client';
 import {
   GoogleMap,
-  useLoadScript,
+  LoadScript,
+  LoadScriptNext,
   MarkerF,
   useJsApiLoader,
 } from '@react-google-maps/api';
@@ -30,7 +31,7 @@ const LocationMap: React.FC<MapProps> = ({ location }) => {
     [],
   );
 
-  const { isLoaded } = useJsApiLoader({
+  const { isLoaded, loadError } = useJsApiLoader({
     id: 'google-map-script',
     googleMapsApiKey: 'AIzaSyASr2-zTezHK_HQDq9hqQDVCM_Yj4jSsaM',
   });
@@ -39,8 +40,13 @@ const LocationMap: React.FC<MapProps> = ({ location }) => {
     return <p>Loading...</p>;
   }
 
+  if (loadError) {
+    return <p>Error!</p>;
+  }
+
   return (
     <div className="flex items-center justify-center">
+      {/* @ts-ignore */}
       <GoogleMap
         options={mapOptions}
         zoom={10}
