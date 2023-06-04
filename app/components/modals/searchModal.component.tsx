@@ -57,11 +57,12 @@ const SearchModal = () => {
       currentQuery = queryString.parse(params.toString());
     }
 
+    const guestCount = adultCount + childrenCount;
+
     const updatedQuery: any = {
       ...currentQuery,
       locationValue: location?.value,
-      adultCount,
-      childrenCount,
+      guestCount,
       infantCount,
       petCount,
     };

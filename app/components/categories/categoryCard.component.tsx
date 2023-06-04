@@ -28,10 +28,10 @@ const CategoryCard: React.FC<CategoryCardProps> = ({
 
     const updatedQuery: any = {
       ...currentQuery,
-      category: label.replace('&', '').toLowerCase(),
+      category: label,
     };
 
-    if (params?.get('category') === label.replace('&', '').toLowerCase()) {
+    if (params?.get('category') === label) {
       delete updatedQuery.category;
     }
 

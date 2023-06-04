@@ -137,9 +137,7 @@ const Categories = () => {
               key={category.label}
               icon={category.icon}
               label={category.label}
-              selected={
-                categoryParam === category.label.toLowerCase().replace('&', '')
-              }
+              selected={categoryParam === category.label}
             />
           ))}
         </div>
