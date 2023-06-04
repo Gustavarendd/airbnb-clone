@@ -69,7 +69,7 @@ export const categories = [
   {
     label: 'Iconic cities',
     icon: GiSydneyOperaHouse,
-    description: 'This property is in a castle!',
+    description: 'This property is in a iconic city!',
   },
   {
     label: 'Camping',
@@ -117,10 +117,13 @@ const Categories = () => {
   const scrollLeft = () => {
     const container = document.getElementById('scroll-container');
     scroll = scroll + window.innerWidth / 2;
+    if (scroll > container!.scrollWidth) scroll = container!.scrollWidth;
     container?.scroll({ left: scroll, behavior: 'smooth' });
   };
+
   const scrollRight = () => {
     const container = document.getElementById('scroll-container');
+    if (scroll < 0) scroll = 0;
     scroll = scroll - window.innerWidth / 2;
     container?.scroll({ left: scroll, behavior: 'smooth' });
   };

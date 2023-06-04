@@ -9,6 +9,7 @@ import SearchModal from './components/modals/searchModal.component';
 import getCurrentUser from './actions/getCurrentUser';
 import HostYourHomeModal from './components/modals/hostYourHomeModal.component';
 import ClientOnly from './components/clientOnly.component';
+import SorryModal from './components/modals/sorryModal.component';
 
 export const metadata = {
   title: 'House hosting',
@@ -31,6 +32,7 @@ export default async function RootLayout({
           <SignUpModal />
           <SearchModal />
           <HostYourHomeModal />
+          <SorryModal />
         </ClientOnly>
         <div className="pb-24 pt-24">{children}</div>
       </body>

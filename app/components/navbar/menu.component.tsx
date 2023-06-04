@@ -14,6 +14,7 @@ import useHostYourHomeModal from '@/app/hooks/useHostYourHomeModal';
 import { SafeUser } from '@/app/types';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
+import useSorryModal from '@/app/hooks/useSorryModal';
 
 interface MenuProps {
   currentUser?: SafeUser | null;
@@ -26,6 +27,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
   const loginModal = useLoginModal();
   const signUpModal = useSignUpModal();
   const homeHostingYourHomeModal = useHostYourHomeModal();
+  const sorryModal = useSorryModal();
 
   const homeHostingYourHome = useCallback(() => {
     if (!currentUser) {
@@ -43,7 +45,10 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
         >
           Host your home
         </div>
-        <div>
+        <div
+          className="cursor-pointer"
+          onClick={sorryModal.onOpen}
+        >
           <HiOutlineGlobeAlt size={16} />
         </div>
         <div
@@ -120,7 +125,10 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           />
           <MenuItem
             label="Help"
-            onClick={() => {}}
+            onClick={() => {
+              sorryModal.onOpen();
+              setIsOpen(false);
+            }}
           />
           {currentUser && (
             <>

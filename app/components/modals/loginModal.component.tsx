@@ -1,6 +1,6 @@
 'use client';
 
-import { IoLogoFacebook, IoLogoApple } from 'react-icons/io';
+import { IoLogoFacebook, IoLogoApple, IoIosCreate } from 'react-icons/io';
 import { FcGoogle } from 'react-icons/fc';
 
 import { useCallback, useState } from 'react';
@@ -95,6 +95,12 @@ const LoginModal = () => {
         <div className="border-t-[1px] w-[45%]" />
       </div>
       <div className="flex flex-col gap-4 mt-4">
+        <Button
+          outline
+          label="Sign up with email"
+          onClick={toggle}
+          icon={IoIosCreate}
+        />
         <Button
           outline
           label="Continue with Facebook"

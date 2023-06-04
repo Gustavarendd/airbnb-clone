@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
-import { useState } from 'react';
+import { useCallback, useState } from 'react';
 import Modal from './modal.component';
 import useSignUpModal from '@/app/hooks/useSignUpModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
@@ -11,7 +11,7 @@ import Input from '../inputs/input.component';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '../button/button.component';
 
-import { IoLogoFacebook, IoLogoApple } from 'react-icons/io';
+import { IoLogoFacebook, IoLogoApple, IoIosCreate } from 'react-icons/io';
 import { FcGoogle } from 'react-icons/fc';
 import { signIn } from 'next-auth/react';
 
@@ -51,6 +51,11 @@ const SignUpModal = () => {
         setIsLoading(false);
       });
   };
+
+  const toggle = useCallback(() => {
+    signUpModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, signUpModal]);
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -127,6 +132,12 @@ const SignUpModal = () => {
       <div className="flex flex-col gap-4 mt-4">
         <Button
           outline
+          label="Log in"
+          onClick={toggle}
+          icon={IoIosCreate}
+        />
+        <Button
+          outline
           label="Continue with Facebook"
           onClick={() => {}}
           icon={IoLogoFacebook}
@@ -151,7 +162,7 @@ const SignUpModal = () => {
     <Modal
       disabled={isLoading}
       isOpen={signUpModal.isOpen}
-      title="Finish signing up"
+      title="Sign up"
       actionLabel="Continue"
       onClose={signUpModal.onClose}
       onSubmit={handleSubmit(onSubmit)}

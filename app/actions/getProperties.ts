@@ -77,7 +77,6 @@ export default async function getProperties(params: IPropertiesParams) {
       ...property,
       createdAt: property.createdAt.toString(),
     }));
-    console.log(params);
 
     return SafeProperties;
   } catch (error: any) {
