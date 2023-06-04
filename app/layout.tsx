@@ -11,7 +11,7 @@ import AirbnbYourHomeModal from './components/modals/airbnbYourHomeModal.compone
 import ClientOnly from './components/clientOnly.component';
 
 export const metadata = {
-  title: 'Airbnb clone',
+  title: 'House hosting',
   description: 'Created by Gustav Rasmussen',
 };
 
