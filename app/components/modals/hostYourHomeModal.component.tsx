@@ -1,6 +1,6 @@
 'use client';
 
-import useAirbnbYourHomeModal from '@/app/hooks/useAirbnbYourHomeModal';
+import useHostYourHomeModal from '@/app/hooks/useHostYourHomeModal';
 import Modal from './modal.component';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import { useMemo, useState } from 'react';
@@ -27,8 +27,8 @@ enum STEPS {
   PRICE = 5,
 }
 
-const AirbnbYourHomeModal = () => {
-  const airbnbYourHomeModal = useAirbnbYourHomeModal();
+const HostYourHomeModal = () => {
+  const hostYourHomeModal = useHostYourHomeModal();
   const router = useRouter();
   const [mapLocation, setMapLocation] = useState<CountrySelectValue>();
   const [isLoading, setIsLoading] = useState(false);
@@ -93,7 +93,7 @@ const AirbnbYourHomeModal = () => {
         router.refresh();
         reset();
         setStep(STEPS.CATEGORY);
-        airbnbYourHomeModal.onClose();
+        hostYourHomeModal.onClose();
       })
       .catch(() => {
         toast.error('Something went wrong!');
@@ -266,16 +266,16 @@ const AirbnbYourHomeModal = () => {
   return (
     <Modal
       disabled={isLoading}
-      isOpen={airbnbYourHomeModal.isOpen}
-      title={`Airbnb your home (step: ${step + 1} / 6)`}
+      isOpen={hostYourHomeModal.isOpen}
+      title={`Host your home (step: ${step + 1} / 6)`}
       actionLabel={actionLabel}
       secondaryActionLabel={secondaryActionLabel}
       secondaryAction={step === STEPS.CATEGORY ? undefined : onBack}
-      onClose={airbnbYourHomeModal.onClose}
+      onClose={hostYourHomeModal.onClose}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
     />
   );
 };
 
-export default AirbnbYourHomeModal;
+export default HostYourHomeModal;

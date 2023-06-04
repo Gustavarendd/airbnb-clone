@@ -1,15 +1,15 @@
 import { create } from 'zustand';
 
-interface AirbnbYourHomeModalStore {
+interface HostYourHomeModalStore {
   isOpen: boolean;
   onOpen: () => void;
   onClose: () => void;
 }
 
-const useAirbnbYourHomeModal = create<AirbnbYourHomeModalStore>(set => ({
+const useHostYourHomeModal = create<HostYourHomeModalStore>(set => ({
   isOpen: false,
   onOpen: () => set({ isOpen: true }),
   onClose: () => set({ isOpen: false }),
 }));
 
-export default useAirbnbYourHomeModal;
+export default useHostYourHomeModal;

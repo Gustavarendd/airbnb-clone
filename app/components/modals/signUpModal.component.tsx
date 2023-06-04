@@ -88,7 +88,7 @@ const SignUpModal = () => {
         />
         <p className="text-xs text-gray-400 pt-1">
           To sign up, you need to be at least 18. Your birthday won‘t be shared
-          with other people who use Airbnb.
+          with other people who use HouseHosting.
         </p>
       </div>
       <div>

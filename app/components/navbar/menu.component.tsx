@@ -10,7 +10,7 @@ import MenuItem from './menuItem.component';
 
 import useLoginModal from '@/app/hooks/useLoginModal';
 import useSignUpModal from '@/app/hooks/useSignUpModal';
-import useAirbnbYourHomeModal from '@/app/hooks/useAirbnbYourHomeModal';
+import useHostYourHomeModal from '@/app/hooks/useHostYourHomeModal';
 import { SafeUser } from '@/app/types';
 import { signOut } from 'next-auth/react';
 import Image from 'next/image';
@@ -25,23 +25,23 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
 
   const loginModal = useLoginModal();
   const signUpModal = useSignUpModal();
-  const airbnbYourHomeModal = useAirbnbYourHomeModal();
+  const homeHostingYourHomeModal = useHostYourHomeModal();
 
-  const airbnbYourHome = useCallback(() => {
+  const homeHostingYourHome = useCallback(() => {
     if (!currentUser) {
       return loginModal.onOpen();
     }
-    return airbnbYourHomeModal.onOpen();
-  }, [currentUser, airbnbYourHomeModal, loginModal]);
+    return homeHostingYourHomeModal.onOpen();
+  }, [currentUser, homeHostingYourHomeModal, loginModal]);
 
   return (
     <div className="relative justify-self-end">
       <div className="flex gap-4 items-center">
         <div
-          onClick={airbnbYourHome}
+          onClick={homeHostingYourHome}
           className="text-xs font-semibold cursor-pointer hidden lg:flex"
         >
-          Airbnb your home
+          Host your home
         </div>
         <div>
           <HiOutlineGlobeAlt size={16} />
@@ -112,9 +112,9 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           )}
           <hr className="my-2" />
           <MenuItem
-            label="Airbnb your home"
+            label="Host your home"
             onClick={() => {
-              airbnbYourHome();
+              homeHostingYourHome();
               setIsOpen(false);
             }}
           />

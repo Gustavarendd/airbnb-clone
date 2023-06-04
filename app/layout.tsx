@@ -7,7 +7,7 @@ import LoginModal from './components/modals/loginModal.component';
 import SignUpModal from './components/modals/signUpModal.component';
 import SearchModal from './components/modals/searchModal.component';
 import getCurrentUser from './actions/getCurrentUser';
-import AirbnbYourHomeModal from './components/modals/airbnbYourHomeModal.component';
+import HostYourHomeModal from './components/modals/hostYourHomeModal.component';
 import ClientOnly from './components/clientOnly.component';
 
 export const metadata = {
@@ -30,7 +30,7 @@ export default async function RootLayout({
           <LoginModal />
           <SignUpModal />
           <SearchModal />
-          <AirbnbYourHomeModal />
+          <HostYourHomeModal />
         </ClientOnly>
         <div className="pb-24 pt-24">{children}</div>
       </body>

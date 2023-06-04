@@ -63,7 +63,7 @@ const LoginModal = () => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <h3 className=" text-xl">Welcome to Airbnb</h3>
+      <h3 className=" text-xl">Welcome to Home Hosting</h3>
       <div className="w-full flex flex-col">
         <Input
           type="email"
