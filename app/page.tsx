@@ -6,9 +6,12 @@ import ClientOnly from './components/clientOnly.component';
 import PropertyCard from './components/properties/propertyCard.component';
 import Container from './components/container.component';
 
+export const dynamic = 'force-dynamic';
+
 interface HomeProps {
   searchParams: IPropertiesParams;
 }
+
 const Home = async ({ searchParams }: HomeProps) => {
   const properties = await getProperties(searchParams);
   const currentUser = await getCurrentUser();

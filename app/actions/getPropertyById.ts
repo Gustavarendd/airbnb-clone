@@ -21,12 +21,12 @@ export default async function getPropertiesById(params: IParams) {
 
     return {
       ...property,
-      createdAt: property.createdAt.toISOString(),
+      createdAt: property.createdAt.toString(),
       user: {
         ...property.user,
-        createdAt: property.user.createdAt.toISOString(),
-        updatedAt: property.user.updatedAt.toISOString(),
-        emailVerified: property.user.emailVerified?.toISOString() || null,
+        createdAt: property.user.createdAt.toString(),
+        updatedAt: property.user.updatedAt.toString(),
+        emailVerified: property.user.emailVerified?.toString() || null,
       },
     };
   } catch (error: any) {
