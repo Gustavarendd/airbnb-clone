@@ -75,8 +75,12 @@ const Modal: React.FC<ModalProps> = ({
           handleBackdropClick(e);
         }}
       >
-        <div className="w-full">
+        <div
+          id="backdrop"
+          className="w-full"
+        >
           <div
+            id="backdrop"
             className={`translate duration-300 flex flex-col items-center ${
               showModal ? 'translate-y-0' : '-translate-y-full'
             } ${showModal ? 'opacity-100' : 'opacity-0'}`}
