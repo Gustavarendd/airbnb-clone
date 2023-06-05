@@ -1,6 +1,6 @@
 'use client';
 
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { formatISO } from 'date-fns';
 import { Range } from 'react-date-range';
 import Modal from './modal.component';
@@ -24,6 +24,7 @@ enum STEPS {
 
 const SearchModal = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
   const searchModal = useSearchModal();
   const router = useRouter();
   const params = useSearchParams();
@@ -38,6 +39,10 @@ const SearchModal = () => {
     startDate: new Date(),
     endDate: new Date(),
     key: 'selection',
+  });
+
+  window.addEventListener('resize', () => {
+    setWindowSize(window.innerWidth);
   });
 
   const onBack = useCallback(() => {
@@ -77,7 +82,7 @@ const SearchModal = () => {
 
     const url = queryString.stringifyUrl(
       {
-        url: '/?',
+        url: '/',
         query: updatedQuery,
       },
       { skipNull: true },
@@ -101,7 +106,7 @@ const SearchModal = () => {
     params,
   ]);
 
-  const bodyContent = (
+  let bodyContent = (
     <div className="grid grid-cols-3 bg-gray-100 w-[90%] max-w-[700px] rounded-full items-center">
       <div
         onClick={() => setStep(STEPS.LOCATION)}
@@ -169,12 +174,78 @@ const SearchModal = () => {
     </div>
   );
 
+  if (windowSize < 770 && step === STEPS.LOCATION) {
+    bodyContent = (
+      <div className=" bg-gray-100 w-full max-h-full rounded-full items-center">
+        <div
+          className={`flex flex-col gap-2 rounded-full py-2 pl-6 transition`}
+        >
+          <div className="text-xs font-semibold">Where</div>
+          <div className="text-xs">
+            {`${
+              location
+                ? location?.flag + ' ' + location?.label
+                : 'Search destination'
+            }`}
+          </div>
+        </div>
+      </div>
+    );
+  }
+  if (windowSize < 770 && step === STEPS.DATE) {
+    bodyContent = (
+      <div className="grid grid-cols-2 w-full">
+        <div
+          className={`flex flex-col gap-2 rounded-full py-2 pl-5 bg-gray-100 transition`}
+        >
+          <div className="text-xs font-semibold">Check in</div>
+          <div className="text-[10px]">{`${
+            dateRange ? dateRange.startDate?.toDateString() : 'Add dates'
+          }`}</div>
+        </div>
+        <div
+          className={`flex flex-col gap-2 rounded-full py-2 pl-5 bg-gray-100 transition`}
+        >
+          <div className="text-xs font-semibold">Check out</div>
+          <div className="text-[10px]">{`${
+            dateRange ? dateRange.endDate?.toDateString() : 'Add dates'
+          }`}</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (windowSize < 770 && step === STEPS.INFO) {
+    bodyContent = (
+      <div
+        className={`w-full bg-gray-100 flex justify-between rounded-full py-2 pl-8 pr-2 transition`}
+      >
+        <div className="flex flex-col gap-2">
+          <div className="text-xs font-semibold">Who</div>
+          <div className="text-xs">{`${
+            adultCount > 0 || petCount > 0
+              ? adultCount + childrenCount + infantCount + ' ' + 'guests'
+              : 'Add guests'
+          } ${petCount > 0 ? petCount + ' ' + 'pets' : ''}`}</div>
+        </div>
+        <div className="justify-self-end">
+          <Button
+            label="Search"
+            onClick={onSubmit}
+            rounded
+            icon={BiSearch}
+          />
+        </div>
+      </div>
+    );
+  }
+
   let footerContent = (
     <div
       id="backdrop"
       className="flex w-full"
     >
-      <div className="w-[80%] flex flex-col gap-4 rounded-2xl border-[1px] drop-shadow-lg p-8 bg-white">
+      <div className="w-full sm:w-fit flex flex-col gap-4 rounded-2xl border-[1px] drop-shadow-lg p-8 bg-white">
         <CountrySelect
           value={location}
           onChange={value => setLocation(value as CountrySelectValue)}

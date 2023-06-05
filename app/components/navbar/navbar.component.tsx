@@ -13,7 +13,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentUser }) => {
   return (
     <div className="w-full fixed bg-white shadow-sm z-10">
       <div className="shadow-sm">
-        <div className="grid grid-cols-5 lg:grid-cols-3 items-center min-w-full py-4 px-10">
+        <div className=" flex justify-between gap-4 sm:grid sm:grid-cols-5 lg:grid-cols-3 items-center min-w-full py-4 px-5 sm:px-10">
           <Logo />
           <SearchBar />
           <Menu currentUser={currentUser} />

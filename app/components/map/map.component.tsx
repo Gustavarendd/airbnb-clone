@@ -52,7 +52,7 @@ const LocationMap: React.FC<MapProps> = ({ location }) => {
         zoom={10}
         center={mapCenter}
         mapTypeId={google.maps.MapTypeId.ROADMAP}
-        mapContainerStyle={{ width: '100%', height: '500px' }}
+        mapContainerStyle={{ width: '400px', height: '400px' }}
         onLoad={() => console.log('Map Component Loaded...')}
       >
         <MarkerF position={mapCenter} />

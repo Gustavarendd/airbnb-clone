@@ -88,7 +88,9 @@ const Modal: React.FC<ModalProps> = ({
             <div className="flex items-center p-4 h-auto border-0 shadow-lg relative flex-col w-full bg-white outline-none focus:outline-none">
               {body}
             </div>
-            <div className="flex flex-row w-[90%] max-w-[700px]">{footer}</div>
+            <div className="flex flex-row w-full sm:w-[90%] max-w-[700px]">
+              {footer}
+            </div>
           </div>
         </div>
       </div>

@@ -46,7 +46,7 @@ const Menu: React.FC<MenuProps> = ({ currentUser }) => {
           Host your home
         </div>
         <div
-          className="cursor-pointer"
+          className="cursor-pointer hidden sm:flex"
           onClick={sorryModal.onOpen}
         >
           <HiOutlineGlobeAlt size={16} />
