@@ -4,6 +4,7 @@ import EmptyState from '../components/emptyState.component';
 import getCurrentUser from '../actions/getCurrentUser';
 import getReservations from '../actions/getReservations';
 import ReservationsClient from './reservationsClient';
+import HomeButton from '../components/button/homeButton.component';
 
 const ReservationsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -15,6 +16,7 @@ const ReservationsPage = async () => {
           title="Unauthorized"
           subtitle="Please login"
         />
+        <HomeButton />
       </ClientOnly>
     );
   }
@@ -30,6 +32,7 @@ const ReservationsPage = async () => {
           title="No reservations found"
           subtitle="Looks like you have no reservations on your properties"
         />
+        <HomeButton />
       </ClientOnly>
     );
   }

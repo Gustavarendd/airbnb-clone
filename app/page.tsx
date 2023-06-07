@@ -5,6 +5,7 @@ import getCurrentUser from './actions/getCurrentUser';
 import ClientOnly from './components/clientOnly.component';
 import PropertyCard from './components/properties/propertyCard.component';
 import Container from './components/container.component';
+import HomeButton from './components/button/homeButton.component';
 
 export const dynamic = 'force-dynamic';
 
@@ -37,6 +38,7 @@ const Home = async ({ searchParams }: HomeProps) => {
               />
             );
           })}
+          <HomeButton />
         </main>
       </Container>
     </ClientOnly>

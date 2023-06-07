@@ -4,6 +4,7 @@ import ClientOnly from '@/app/components/clientOnly.component';
 import EmptyState from '@/app/components/emptyState.component';
 import PropertyClient from './propertyClient.component';
 import getReservations from '@/app/actions/getReservations';
+import HomeButton from '@/app/components/button/homeButton.component';
 
 interface IParams {
   propertyId: string;
@@ -18,6 +19,7 @@ const PropertyPage = async ({ params }: { params: IParams }) => {
     return (
       <ClientOnly>
         <EmptyState />
+        <HomeButton />
       </ClientOnly>
     );
   }
@@ -29,6 +31,7 @@ const PropertyPage = async ({ params }: { params: IParams }) => {
         reservations={reservations}
         currentUser={currentUser}
       />
+      <HomeButton />
     </ClientOnly>
   );
 };

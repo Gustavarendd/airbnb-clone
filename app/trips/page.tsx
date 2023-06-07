@@ -4,6 +4,7 @@ import TripsClient from './tripsClient.component';
 
 import getCurrentUser from '../actions/getCurrentUser';
 import getReservations from '../actions/getReservations';
+import HomeButton from '../components/button/homeButton.component';
 
 const TripsPage = async () => {
   const currentUser = await getCurrentUser();
@@ -30,6 +31,7 @@ const TripsPage = async () => {
           title="No trips found"
           subtitle="Looks like you haven't reserved any trips"
         />
+        <HomeButton />
       </ClientOnly>
     );
   }
@@ -40,6 +42,7 @@ const TripsPage = async () => {
         reservations={reservations}
         currentUser={currentUser}
       />
+      <HomeButton />
     </ClientOnly>
   );
 };
