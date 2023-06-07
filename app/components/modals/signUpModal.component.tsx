@@ -11,7 +11,7 @@ import Input from '../inputs/input.component';
 import { FieldValues, SubmitHandler, useForm } from 'react-hook-form';
 import Button from '../button/button.component';
 
-import { IoLogoFacebook, IoLogoApple, IoIosCreate } from 'react-icons/io';
+import { IoLogoFacebook, IoLogoGithub, IoIosCreate } from 'react-icons/io';
 import { FcGoogle } from 'react-icons/fc';
 import { signIn } from 'next-auth/react';
 
@@ -150,9 +150,9 @@ const SignUpModal = () => {
         />
         <Button
           outline
-          label="Continue with Apple"
-          onClick={() => {}}
-          icon={IoLogoApple}
+          label="Continue with Github"
+          onClick={() => signIn('google')}
+          icon={IoLogoGithub}
         />
       </div>
     </div>

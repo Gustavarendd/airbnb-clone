@@ -1,6 +1,6 @@
 'use client';
 
-import { IoLogoFacebook, IoLogoApple, IoIosCreate } from 'react-icons/io';
+import { IoLogoFacebook, IoIosCreate, IoLogoGithub } from 'react-icons/io';
 import { FcGoogle } from 'react-icons/fc';
 
 import { useCallback, useState } from 'react';
@@ -115,9 +115,9 @@ const LoginModal = () => {
         />
         <Button
           outline
-          label="Continue with Apple"
-          onClick={() => {}}
-          icon={IoLogoApple}
+          label="Continue with Github"
+          onClick={() => signIn('github')}
+          icon={IoLogoGithub}
         />
       </div>
     </div>
