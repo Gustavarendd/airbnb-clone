@@ -139,7 +139,7 @@ const SignUpModal = () => {
         <Button
           outline
           label="Continue with Facebook"
-          onClick={() => {}}
+          onClick={() => signIn('facebook')}
           icon={IoLogoFacebook}
         />
         <Button
