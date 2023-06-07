@@ -4,6 +4,7 @@ import EmptyState from '../components/emptyState.component';
 import getCurrentUser from '../actions/getCurrentUser';
 import getFavoriteProperties from '../actions/getFavoriteProperties';
 import FavoritesClient from './favoritesClient';
+import HomeButton from '../components/button/homeButton.component';
 
 const FavoritesPage = async () => {
   const favoriteProperties = await getFavoriteProperties();
@@ -16,6 +17,7 @@ const FavoritesPage = async () => {
           title="No favorites found"
           subtitle="Looks like you have no favorites yet!"
         />
+        <HomeButton />
       </ClientOnly>
     );
   }
@@ -26,6 +28,7 @@ const FavoritesPage = async () => {
         properties={favoriteProperties}
         currentUser={currentUser}
       />
+      <HomeButton />
     </ClientOnly>
   );
 };
