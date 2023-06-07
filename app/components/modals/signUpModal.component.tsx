@@ -151,7 +151,7 @@ const SignUpModal = () => {
         <Button
           outline
           label="Continue with Github"
-          onClick={() => signIn('google')}
+          onClick={() => signIn('github')}
           icon={IoLogoGithub}
         />
       </div>
