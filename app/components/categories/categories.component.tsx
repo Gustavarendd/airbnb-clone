@@ -123,17 +123,18 @@ const Categories = () => {
 
   const scrollRight = () => {
     const container = document.getElementById('scroll-container');
-    if (scroll < 0) scroll = 0;
     scroll = scroll - window.innerWidth / 2;
+    if (scroll < 0) scroll = 0;
     container?.scroll({ left: scroll, behavior: 'smooth' });
   };
 
   return (
-    <div className="max-w-[100vw] grid md:grid-cols-[minmax(0,_9fr)_minmax(0,_100px)] grid-cols-[minmax(0,_9fr)_minmax(0,_50px)] gap-5 items-center justify-between px-10 border-b-[1px]">
+    <div className="max-w-[100vw] grid md:grid-cols-[minmax(0,_9fr)_minmax(0,_100px)] grid-cols-[minmax(0,_9fr)_minmax(0,_50px)] gap-5 items-center justify-between px-4 sm:px-10 border-b-[1px]">
       <div className="relative col-span-1 flex flex-row items-center">
         <div
+          onTouchMove={() => {}}
           id="scroll-container"
-          className=" flex flex-row gap-8 overflow-hidden no-scrollbar px-[67px]"
+          className=" flex flex-row gap-8 overflow-hidden overflow-x-scroll no-scrollbar px-4 sm:px-[67px]"
         >
           {categories.map(category => (
             <CategoryCard
@@ -144,18 +145,18 @@ const Categories = () => {
             />
           ))}
         </div>
-        <div className="absolute flex items-center bg-gray-100 fade-left h-full w-[67px]">
+        <div className="absolute flex items-center bg-gray-100 fade-left h-full w-10 sm:w-[67px]">
           <div
             onClick={scrollRight}
-            className="border-[1px] cursor-pointer bg-white rounded-full p-1"
+            className="border-[1px] cursor-pointer bg-white rounded-full p-1 hidden sm:flex"
           >
             <IoIosArrowBack />
           </div>
         </div>
-        <div className="absolute right-0 flex items-center justify-end fade-right h-full w-[67px] ">
+        <div className="absolute right-0 flex items-center justify-end fade-right h-full w-10 sm:w-[67px]">
           <div
             onClick={scrollLeft}
-            className="border-[1px] cursor-pointer bg-white rounded-full p-1 "
+            className="border-[1px] cursor-pointer bg-white rounded-full p-1 hidden sm:flex"
           >
             <IoIosArrowForward />
           </div>
